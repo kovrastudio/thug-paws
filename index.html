@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="THUG_PAWS — Discover smarter finds, useful gadgets and everyday essentials. No bark. Just bangers.">
+  <title>THUG_PAWS | No Bark. Just Bangers.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #101010;
+      --panel: #191919;
+      --panel2: #202020;
+      --orange: #ff641f;
+      --orange2: #ff854b;
+      --white: #f6f4f1;
+      --muted: #a5a5a5;
+      --border: rgba(255,255,255,.10);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, sans-serif;
+      line-height: 1.6;
+    }
+
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+    }
+
+    .announcement {
+      background: var(--orange);
+      color: #111;
+      text-align: center;
+      padding: 8px 15px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16,16,16,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 31px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .brand span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #d0d0d0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--orange); }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: white;
+      padding: 9px 13px;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 75px 0 65px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 35%, rgba(255,100,31,.15), transparent 45%),
+        linear-gradient(135deg, #111 0%, #171717 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+      line-height: .98;
+    }
+
+    h1 {
+      font-size: clamp(64px, 8vw, 108px);
+      font-weight: 900;
+      letter-spacing: -3px;
+    }
+
+    h1 span { color: var(--orange); }
+
+    .hero-copy {
+      max-width: 490px;
+      margin-top: 24px;
+      color: #bcbcbc;
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 23px;
+      background: var(--orange);
+      color: #111;
+      border: 1px solid var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .button:hover {
+      background: var(--orange2);
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: white;
+      border-color: rgba(255,255,255,.3);
+    }
+
+    .button.secondary:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .hero-art {
+      position: relative;
+      min-width: 0;
+    }
+
+    .hero-art img {
+      width: 100%;
+      max-height: 490px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 35px rgba(0,0,0,.4));
+    }
+
+    .image-fallback {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed #555;
+      color: var(--muted);
+      text-align: center;
+      padding: 30px;
+    }
+
+    .image-fallback strong {
+      display: block;
+      color: var(--orange);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 36px;
+    }
+
+    .ticker {
+      overflow: hidden;
+      white-space: nowrap;
+      background: var(--orange);
+      color: #111;
+      padding: 13px 0;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .ticker span { padding: 0 25px; }
+
+    section { scroll-margin-top: 95px; }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(43px, 5vw, 64px);
+      font-weight: 900;
+    }
+
+    .section-heading h2 span { color: var(--orange); }
+
+    .section-heading p {
+      max-width: 390px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .category {
+      min-height: 190px;
+      padding: 24px;
+      background: linear-gradient(145deg, #242424, #171717);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .25s;
+    }
+
+    .category:hover {
+      border-color: var(--orange);
+      transform: translateY(-5px);
+    }
+
+    .category-number {
+      color: var(--orange);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .category h3 {
+      font-size: 29px;
+      font-weight: 800;
+    }
+
+    .category p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .category-arrow {
+      align-self: end;
+      color: var(--orange);
+      font-size: 22px;
+    }
+
+    .shop-section {
+      background: #151515;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .shop-tools {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      background: #202020;
+      color: white;
+      border: 1px solid var(--border);
+      padding: 13px 16px;
+      outline: none;
+    }
+
+    .search-box:focus { border-color: var(--orange); }
+
+    .filter-button {
+      background: #202020;
+      color: white;
+      border: 1px solid var(--border);
+      padding: 12px 17px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #111;
+    }
+
+    .empty-state {
+      padding: 55px 25px;
+      text-align: center;
+      background: #1c1c1c;
+      border: 1px solid var(--border);
+    }
+
+    .empty-state .symbol {
+      color: var(--orange);
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .empty-state h3 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .empty-state p {
+      max-width: 490px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      background: #202020;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #292929;
+    }
+
+    .product-info { padding: 20px; }
+    .product-info h3 { font-size: 25px; }
+    .product-info p { color: var(--muted); font-size: 12px; margin: 10px 0 18px; }
+    .product-price { color: var(--orange); font-weight: 800; margin-bottom: 15px; }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .manifesto-art {
+      background: #1b1b1b;
+      border: 1px solid var(--border);
+      padding: 25px;
+    }
+
+    .manifesto-art img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .manifesto h2 {
+      font-size: clamp(48px, 6vw, 76px);
+      margin-bottom: 22px;
+    }
+
+    .manifesto h2 span { color: var(--orange); }
+
+    .manifesto-copy {
+      color: #b7b7b7;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .value {
+      padding: 18px;
+      border-left: 2px solid var(--orange);
+      background: #1a1a1a;
+    }
+
+    .value strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
+    .value span { color: var(--muted); font-size: 11px; }
+
+    .info-section {
+      background: #151515;
+      border-top: 1px solid var(--border);
+    }
+
+    .info-content {
+      max-width: 850px;
+    }
+
+    .info-content h2 {
+      font-size: clamp(45px, 6vw, 68px);
+      margin-bottom: 25px;
+    }
+
+    .info-content h2 span { color: var(--orange); }
+
+    .info-content h3 {
+      font-size: 25px;
+      margin: 28px 0 10px;
+    }
+
+    .info-content p,
+    .info-content li {
+      color: #b5b5b5;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .info-content ul { padding-left: 20px; }
+
+    .info-content a {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
+    .notice {
+      padding: 17px;
+      background: #202020;
+      border-left: 3px solid var(--orange);
+      color: #ccc;
+      font-size: 12px;
+      margin: 20px 0;
+    }
+
+    footer {
+      padding: 50px 0 25px;
+      background: #0b0b0b;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+      flex-wrap: wrap;
+      padding-bottom: 35px;
+    }
+
+    .footer-brand p {
+      max-width: 310px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover { color: var(--orange); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #777;
+      font-size: 10px;
+    }
+
+    .disclosure {
+      color: #888;
+      font-size: 10px;
+      margin-top: 12px;
+      max-width: 600px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { max-width: 650px; margin: auto; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .manifesto { grid-template-columns: 1fr; gap: 35px; }
+      .manifesto-art { max-width: 600px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav { min-height: 66px; }
+      .menu-button { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: #151515;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding: 55px 0 45px; }
+      h1 { font-size: 68px; }
+      .section { padding: 60px 0; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 15px; }
+      .categories { gap: 10px; }
+      .category { min-height: 160px; padding: 16px; }
+      .category h3 { font-size: 24px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .values { grid-template-columns: 1fr; }
+      .footer-top { display: block; }
+      .footer-links { margin-top: 25px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">Independent finds. Smarter choices. THUG_PAWS.</div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="THUG PAWS home">THUG<span>_</span>PAWS</a>
+
+      <button class="menu-button" id="menuButton" aria-label="Open navigation menu">MENU ☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#shop">Discover</a>
+        <a href="#about">Our Story</a>
+        <a href="#affiliate">Affiliate Info</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Welcome to the pack</div>
+          <h1>NO BARK.<br>JUST <span>BANGERS.</span></h1>
+          <p class="hero-copy">
+            We hunt down useful gadgets, clever everyday essentials and products
+            worth discovering. Less scrolling. Better finds. Smarter choices.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#shop">Explore the finds ↗</a>
+            <a class="button secondary" href="#about">Meet the pack</a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <img
+            src="thug-paws-crew.png"
+            alt="The five THUG_PAWS streetwear dog mascots"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          >
+          <div class="image-fallback" style="display:none">
+            <div>
+              <strong>THUG_PAWS</strong>
+              Upload thug-paws-crew.png to the root of your GitHub repository.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <span>WORK SMARTER. GROW FASTER.</span> ✦
+      <span>NO BARK. JUST BANGERS.</span> ✦
+      <span>FIND YOUR NEXT FAVOURITE.</span> ✦
+      <span>WORK SMARTER. GROW FASTER.</span>
+    </div>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The good stuff</div>
+            <h2>Explore <span>categories.</span></h2>
+          </div>
+          <p>Discover useful products and clever finds across the things that make everyday life better.</p>
+        </div>
+
+        <div class="categories">
+          <a class="category" href="#shop" data-category-link="tech">
+            <span class="category-number">01 / TECH</span>
+            <div>
+              <h3>Tech &<br>Gadgets</h3>
+              <p>Smart tools. Useful tech.</p>
+            </div>
+            <span class="category-arrow">↗</span>
+          </a>
+
+          <a class="category" href="#shop" data-category-link="home">
+            <span class="category-number">02 / HOME</span>
+            <div>
+              <h3>Home &<br>Lifestyle</h3>
+              <p>Make everyday living easier.</p>
+            </div>
+            <span class="category-arrow">↗</span>
+          </a>
+
+          <a class="category" href="#shop" data-category-link="essentials">
+            <span class="category-number">03 / DAILY</span>
+            <div>
+              <h3>Daily<br>Essentials</h3>
+              <p>Little things. Big difference.</p>
+            </div>
+            <span class="category-arrow">↗</span>
+          </a>
+
+          <a class="category" href="#shop" data-category-link="trending">
+            <span class="category-number">04 / TRENDING</span>
+            <div>
+              <h3>Trending<br>Finds</h3>
+              <p>Things worth checking out.</p>
+            </div>
+            <span class="category-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shop-section" id="shop">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The THUG_PAWS selection</div>
+            <h2>Our latest <span>finds.</span></h2>
+          </div>
+          <p>We only want to feature products with real information and working links. The collection will grow as we review our first picks.</p>
+        </div>
+
+        <div class="shop-tools">
+          <input
+            class="search-box"
+            id="productSearch"
+            type="search"
+            placeholder="Search products..."
+            aria-label="Search products"
+          >
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="tech">Tech</button>
+          <button class="filter-button" data-filter="home">Home</button>
+          <button class="filter-button" data-filter="essentials">Essentials</button>
+          <button class="filter-button" data-filter="trending">Trending</button>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="empty-state" id="emptyState">
+          <div class="symbol">✦</div>
+          <h3>THE PACK IS ON THE HUNT.</h3>
+          <p>
+            Our first product picks are coming soon. We're building a collection
+            of useful finds, with real product details and direct shopping links.
+            No random products. No made-up reviews. Just carefully selected finds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container manifesto">
+        <div class="manifesto-art">
+          <img
+            src="thug-paws-crew.png"
+            alt="The THUG_PAWS mascot crew"
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div>
+          <div class="eyebrow">More than a product page</div>
+          <h2>MEET THE <span>PACK.</span></h2>
+          <p class="manifesto-copy">
+            THUG_PAWS is built around one simple idea: finding good products
+            shouldn't feel like a full-time job.
+          </p>
+          <p class="manifesto-copy">
+            We explore gadgets, everyday essentials and interesting discoveries
+            to help people find products that may make life easier, more useful
+            or simply more enjoyable.
+          </p>
+          <p class="manifesto-copy">
+            We're an independent discovery brand. We don't manufacture the
+            products listed on this website, and product purchases are completed
+            through the retailer's own website.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <strong>Useful</strong>
+              <span>Practical discoveries.</span>
+            </div>
+            <div class="value">
+              <strong>Honest</strong>
+              <span>Clear product information.</span>
+            </div>
+            <div class="value">
+              <strong>Simple</strong>
+              <span>Less noise. Better finds.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section info-section" id="affiliate">
+      <div class="container info-content">
+        <div class="eyebrow">Transparency matters</div>
+        <h2>Affiliate <span>disclosure.</span></h2>
+
+        <p>
+          THUG_PAWS may participate in affiliate marketing programmes. This
+          means that some links on this website may be special tracking links.
+          If you click one of these links and make a qualifying purchase, we
+          may earn a commission at no additional cost to you.
+        </p>
+
+        <div class="notice">
+          As an Amazon Associate I earn from qualifying purchases.
+        </div>
+
+        <p>
+          Product prices, availability, delivery options and conditions are
+          controlled by the retailer and may change. Always check the final
+          details on the retailer's website before purchasing.
+        </p>
+
+        <p>
+          Affiliate relationships do not guarantee that a product is suitable
+          for your needs. Make your own assessment before buying.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="container info-content">
+        <div class="eyebrow">Your information</div>
+        <h2>Privacy <span>policy.</span></h2>
+
+        <p>
+          THUG_PAWS aims to collect as little personal information as possible.
+          This website is currently an informational product-discovery website.
+        </p>
+
+        <h3>Information you provide</h3>
+        <p>
+          If you contact us through a communication channel we publish, we may
+          receive the information you choose to send, such as your email address
+          and message.
+        </p>
+
+        <h3>Cookies and third-party services</h3>
+        <p>
+          Retailer websites and affiliate tracking services may use cookies or
+          similar technologies when you follow their links. Their own privacy
+          policies explain how they handle your information.
+        </p>
+
+        <h3>External websites</h3>
+        <p>
+          Our website may link to third-party websites. We do not control their
+          content, security or privacy practices. Review their policies before
+          providing personal information or making a purchase.
+        </p>
+
+        <h3>Policy updates</h3>
+        <p>
+          This policy may be updated as the website develops. Any changes will
+          be published on this page.
+        </p>
+
+        <div class="notice">
+          Before actively collecting personal data, using analytics or adding
+          advertising cookies, this policy and any required consent mechanism
+          must be reviewed and updated for the applicable laws.
+        </div>
+      </div>
+    </section>
+
+    <section class="section info-section" id="terms">
+      <div class="container info-content">
+        <div class="eyebrow">Please read</div>
+        <h2>Terms of <span>use.</span></h2>
+
+        <h3>Website purpose</h3>
+        <p>
+          THUG_PAWS provides product discovery information and links to external
+          retailers. We are not the seller of products offered by third parties.
+        </p>
+
+        <h3>Product information</h3>
+        <p>
+          Product descriptions, prices, stock and delivery information may
+          change. The retailer's website is the final source for current
+          purchase information.
+        </p>
+
+        <h3>Purchases</h3>
+        <p>
+          Any purchase made through an external retailer is subject to that
+          retailer's terms, policies, payment processes, delivery arrangements
+          and returns policy.
+        </p>
+
+        <h3>Website content</h3>
+        <p>
+          Website text, branding and original visual elements may not be copied
+          or reused commercially without permission, except where permitted by law.
+        </p>
+
+        <h3>Changes</h3>
+        <p>
+          We may update website content and these terms as the project develops.
+        </p>
+
+        <div class="notice">
+          These are starter policy pages, not a substitute for legal review.
+          Before commercial launch, complete the operator identity, contact
+          details and any disclosures required by the laws applicable to the
+          business and its audience.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container info-content">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Contact the <span>pack.</span></h2>
+        <p>
+          For questions about THUG_PAWS, product listings or website content,
+          use the contact details that will be published here before the
+          commercial launch.
+        </p>
+        <p>
+          We will add an official business contact email once it has been
+          created. We won't publish an invented or unmonitored address.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#home">THUG<span>_</span>PAWS</a>
+          <p>NO BARK. JUST BANGERS. Discover useful products, clever gadgets and everyday finds.</p>
+          <p class="disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#affiliate">Affiliate disclosure</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.tiktok.com/@thug_paws" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> THUG_PAWS. All rights reserved.</span>
+        <span>WORK SMARTER. GROW FASTER.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      ADD REAL PRODUCTS HERE WHEN THEY ARE SELECTED.
+
+      Example structure:
+
+      {
+        name: "Product name",
+        description: "A short, accurate description.",
+        price: "$00.00",
+        category: "tech",
+        image: "product-image.jpg",
+        link: "YOUR_REAL_AFFILIATE_LINK"
+      }
+
+      Do not publish products until their information, images
+      and affiliate links have been checked.
+    */
+
+    const products = [];
+
+    const productGrid = document.getElementById("productGrid");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("productSearch");
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    let activeFilter = "all";
+
+    function renderProducts() {
+      const search = searchInput.value.trim().toLowerCase();
+
+      const filtered = products.filter(product => {
+        const matchesCategory =
+          activeFilter === "all" || product.category === activeFilter;
+
+        const matchesSearch =
+          product.name.toLowerCase().includes(search) ||
+          product.description.toLowerCase().includes(search);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      productGrid.innerHTML = "";
+
+      filtered.forEach(product => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+
+        const image = document.createElement("img");
+        image.src = product.image;
+        image.alt = product.name;
+        image.loading = "lazy";
+
+        const info = document.createElement("div");
+        info.className = "product-info";
+
+        const title = document.createElement("h3");
+        title.textContent = product.name;
+
+        const description = document.createElement("p");
+        description.textContent = product.description;
+
+        const price = document.createElement("div");
+        price.className = "product-price";
+        price.textContent = product.price || "";
+
+        const link = document.createElement("a");
+        link.className = "button";
+        link.href = product.link;
+        link.target = "_blank";
+        link.rel = "nofollow sponsored noopener noreferrer";
+        link.textContent = "View product ↗";
+
+        info.append(title, description, price, link);
+        card.append(image, info);
+        productGrid.append(card);
+      });
+
+      emptyState.style.display = filtered.length ? "none" : "block";
+
+      if (products.length && !filtered.length) {
+        emptyState.querySelector("h3").textContent = "NO MATCHES FOUND.";
+        emptyState.querySelector("p").textContent =
+          "Try another search or choose a different category.";
+      } else if (!products.length) {
+        emptyState.querySelector("h3").textContent = "THE PACK IS ON THE HUNT.";
+        emptyState.querySelector("p").textContent =
+          "Our first product picks are coming soon. We're building a collection of useful finds, with real product details and direct shopping links. No random products. No made-up reviews. Just carefully selected finds.";
+      }
+    }
+
+    searchInput.addEventListener("input", renderProducts);
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+
+        filterButtons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+
+        renderProducts();
+      });
+    });
+
+    document.querySelectorAll("[data-category-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        activeFilter = link.dataset.categoryLink;
+
+        filterButtons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === activeFilter
+          );
+        });
+
+        renderProducts();
+      });
+    });
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderProducts();
+  </script>
+</body>
+</html>
